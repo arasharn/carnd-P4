@@ -537,7 +537,7 @@ div.prism-show-language > div.prism-show-language-label {
 
 <h4 id="toc_7">1. Briefly state how you computed the camera matrix and distortion coefficients. Provide an example of a distortion corrected calibration image.</h4>
 
-<p>The code for this step is contained in the first code cell of the <a href="">P4.ipynb</a> in cells 2 through 4. <br>
+<p>The code for this step is contained in the first code cell of the <code>P4_rev.ipynb</code> in cells 2 through 4. <br>
 For this section first I tried to prepare object points (<code>objpoints</code>). This point are going to use as \((x,y,z)\) coordinates of each chessboard corners in the global plane, which in this project it was assumed that each chessboard is fixed on the \((x,y)\) plane at \(z=0\). Thus, <code>objp</code> is just a replicated array of coordinates, and <code>objpoints</code> will be appended with a copy of it every time I successfully detect all chessboard corners in a test image.  <code>imgpoints</code> will be appended with the (x, y) pixel position of each of the corners in the image plane with each successful chessboard detection.  </p>
 
 <p>I then used the output <code>objpoints</code> and <code>imgpoints</code> to compute the camera calibration and distortion coefficients using the <code>cv2.calibrateCamera()</code> function.  I applied this distortion correction to the test image using the <code>cv2.undistort()</code> function and obtained this result: </p>
@@ -551,11 +551,11 @@ For this section first I tried to prepare object points (<code>objpoints</code>)
 <p>To demonstrate this step, I will describe how I apply the distortion correction to one of the test images like this one:<br>
 <img src="./Screenshot2018-09-1310.11.png" alt="alt text" title="Road Transformed"></p>
 
-<p>Codes for this part can be found on cells 6 and 7 of <a href="">P4.ipynb</a>.</p>
+<p>Codes for this part can be found on cells 6 and 7 of <code>P4_rev.ipynb</code>.</p>
 
 <h4 id="toc_10">2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.</h4>
 
-<p>I used a combination of color and gradient thresholds to generate a binary image (thresholding steps at cell 9 in <code>P4.ipynb</code>). For this task, Sobel operator (cell 8 <code>abs_sobel_thresh</code>) and direction of gradients (cell 8 <code>dir_threshold</code>). Next, color thresholding between red and green channel was done (cell 9 line 9 through 14). Then, in line 10 through 18 <code>S</code> and <code>L</code> channels were thresholded.</p>
+<p>I used a combination of color and gradient thresholds to generate a binary image (thresholding steps at cell 9 in <code>P4_rev.ipynb</code>). For this task, Sobel operator (cell 8 <code>abs_sobel_thresh</code>) and direction of gradients (cell 8 <code>dir_threshold</code>). Next, color thresholding between red and green channel was done (cell 9 line 9 through 14). Then, in line 10 through 18 <code>S</code> and <code>L</code> channels were thresholded.</p>
 
 <p>Then the results of different thresholding filters were combined. An area of interest was also defined (lane 18)The results of all steps were combined on line      </p>
 
@@ -618,9 +618,9 @@ For this section first I tried to prepare object points (<code>objpoints</code>)
 
 <h4 id="toc_14">6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.</h4>
 
-<p>I implemented this step in cells 20 through 21 in my code in <code>P4.ipynb</code> in the function <code>outputMaker()</code>.  Here is an example of my result on a test image:</p>
+<p>I implemented this step in cells 20 through 21 in my code in <code>P4_rev.ipynb</code> in the function <code>outputMaker()</code>.  Here is an example of my result on a test image:</p>
 
-<p><img src="./Screenshot2018-09-1415.31.png" alt="alt text" title="Output"></p>
+<p><img src="./Screenshot2018-09-1421.35.53.png" alt="alt text" title="Output"></p>
 
 <hr>
 
@@ -628,7 +628,7 @@ For this section first I tried to prepare object points (<code>objpoints</code>)
 
 <h4 id="toc_16">1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).</h4>
 
-<p>Here&rsquo;s a <a href="./project_video_output2.mp4">link to my video result</a></p>
+<p>Here&rsquo;s a <a href="./project_video_output3.mp4">link to my video result</a></p>
 
 <hr>
 
@@ -636,7 +636,7 @@ For this section first I tried to prepare object points (<code>objpoints</code>)
 
 <h4 id="toc_18">1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?</h4>
 
-<p>The problems I encountered were due to lighting conditions and shadows. TO solve these issues thresholds were defined by using both RGB and HLS channels. By combining these thresholds I was able to avoid shadowing (cell 9). The other main issues that I encountered was with the unrealistic values for the curvature. This issue was also solved by changing the destination points for warping the images (cell 12).</p>
+<p>The problems I encountered were due to lighting conditions and shadows. TO solve these issues thresholds were defined by using both RGB and HLS channels. By combining these thresholds I was able to avoid shadowing (cell 9). The other main issues that I encountered was with the unrealistic values for the curvature. This issue was also solved by changing the destination points for warping the images (cell 12). </p>
 
 
 
