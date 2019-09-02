@@ -45,10 +45,9 @@ You're reading it!
 
 #### 1. Briefly state how you computed the camera matrix and distortion coefficients. Provide an example of a distortion corrected calibration image.
 
-The code for this step is contained in the first code cell of the `P4_rev.ipynb` in cells 2 through 4. 
-For this section first I tried to prepare object points (`objpoints`). This point are going to use as $(x,y,z)$ coordinates of each chessboard corners in the global plane, which in this project it was assumed that each chessboard is fixed on the $(x,y)$ plane at $z=0$. Thus, `objp` is just a replicated array of coordinates, and `objpoints` will be appended with a copy of it every time I successfully detect all chessboard corners in a test image.  `imgpoints` will be appended with the (x, y) pixel position of each of the corners in the image plane with each successful chessboard detection.  
+For this section first I tried to prepare object points (`objpoints`). This point are going to use as $(x,y,z)$ coordinates of each chessboard corners in the global plane, which in this project it was assumed that each chessboard is fixed on the $(x,y)$ plane at $z=0$. Then `objpoints` will be appended with a copy of it every time I successfully detect all chessboard corners in a test image.  `imgpoints` will be appended with the (x, y) pixel position of each of the corners in the image plane with each successful chessboard detection.  
 
-I then used the output `objpoints` and `imgpoints` to compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera()` function.  I applied this distortion correction to the test image using the `cv2.undistort()` function and obtained this result: 
+ Then `objpoints` and `imgpoints` were used to compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera()` function.  I applied this distortion correction to the test image using the `cv2.undistort()` function and obtained this result: 
 
 ![alt text][image1]
 
@@ -63,7 +62,7 @@ Codes for this part can be found on cells 6 and 7 of `P4_rev.ipynb`.
 
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
 
-I used a combination of color and gradient thresholds to generate a binary image (thresholding steps at cell 9 in `P4_rev.ipynb`). For this task, Sobel operator (cell 8 `abs_sobel_thresh`) and direction of gradients (cell 8 `dir_threshold`). Next, color thresholding between red and green channel was done (cell 9 line 9 through 14). Then, in line 10 through 18 `S` and `L` channels were thresholded.
+ a combination of color and gradient thresholds were used to generate a binary image (thresholding steps at cell 9 in `P4_rev.ipynb`). For this task, Sobel operator (cell 8 `abs_sobel_thresh`) and direction of gradients (cell 8 `dir_threshold`). Next, color thresholding between red and green channel was done (cell 9 line 9 through 14). Then, in line 10 through 18 `S` and `L` channels were thresholded.
 
 Then the results of different thresholding filters were combined. An area of interest was also defined (lane 18)The results of all steps were combined on line      
 
@@ -73,7 +72,7 @@ Here's an example of my output for this step.
 
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
 
-The code for my perspective transform includes a function called `warper()`, which appears in lines 1 through 8 in the file `example.py` (output_images/examples/example.py) (or, for example, in the 3rd code cell of the IPython notebook).  The `warper()` function takes as inputs an image (`img`), as well as source (`src`) and destination (`dst`) points.  I chose the the source and destination points manually and following table shows my chosen points:
+In lines 1 through 8 in the file `example.py` (output_images/examples/example.py). The `warper()` function takes as inputs an image (`img`), as well as source (`src`) and destination (`dst`) points.  I chose the the source and destination points manually and following table shows my chosen points:
 
 | Source        | Destination   | 
 |:-------------:|:-------------:| 
@@ -105,7 +104,7 @@ The radius of the curvature and the distance from the lane center was calculated
 
 #### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
-I implemented this step in cells 20 through 21 in my code in `P4_rev.ipynb` in the function `outputMaker()`.  Here is an example of my result on a test image:
+It was implemented in in cells 20 through 21 in my code in `P4_rev.ipynb` and in the function `outputMaker()`.  Here is an example of my result on a test image:
 
 ![alt text][image6]
 
